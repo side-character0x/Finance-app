@@ -1,0 +1,25 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body style="background-color: bisque;">
+    <h1 style="text-align: center;padding: 5vh;">Let's Get You In</h1>
+    <form action="/login" method="post">
+        <table style="padding-left: 8vw;">
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name="name" required></td>
+            </tr>
+            <tr>
+                <td>Pin:</td>
+                <td><input type="text" name="pin" placeholder="4 digit pin" required></td>
+            </tr>
+        </table>
+        {% if error %}
+            <p>PIN doesn't match.Please try again!</p>
+        {% endif %}
+        <p style="padding-left: 15vw;font-size: 4vh;margin-top: 1%;"><button type="submit" name="login" value="login">login</button></p>
+        <p style="padding-left: 8vw;">Don't have an account? <a href="/signin"><u>Register</u></a></p>
+    </form>
+</body>

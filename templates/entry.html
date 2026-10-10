@@ -1,0 +1,24 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>Sign In</title>
+</head>
+<body style="background-color: rgb(122, 144, 144);">
+    <h1 style="text-align: center;padding-top: 4vh;font-size: 3vh;">SIGN UP HERE</h1>
+    <form action="/signin" method="post">
+    <table>
+        <tr>
+            <td>Username:</td>
+            <td><input type="text" name="name" required></td>
+        </tr>
+        <tr>
+            <td>Pin:</td>
+            <td><input type="text" name="pin" placeholder="Enter a 4 digit pin" required></td>
+        </tr>
+    </table>
+    {% if error %}
+        <p style="padding-left: 15vw;font-size: 4vh;margin-top: 1%;">Incorrect PIN! Please enter a 4 digit numeric PIN.</p>
+    {% endif %}
+    <p style="margin: 0vh;font-size: 3vh;"><button type="submit" >Sign up</button></p>
+    </form>
+</body>
