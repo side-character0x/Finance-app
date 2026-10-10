@@ -1,0 +1,34 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>Home Page</title>
+</head>
+<body style="background-color:#F8FAFC;color: #064E3B;">
+    <h1 style="text-align: center;text-decoration: solid;font-size: 8vh;padding-top: 3vh;">Personal Finance</h1>
+    <p style="font-size: 3vw;margin: 2vh;">Welcome {{username}}</p>
+    <p style="padding-top: 1vh;font-size: 4vh;text-align: right;">Current Balance:{{balance}}</p>
+    <p style="font-size: 2vw;">What's on your mind today?</p>
+    <form action="/home" method="post">
+    <p style="font-size: 2vw;padding-left: 15vw;">
+    {% if not expense %}
+    {% if income %}
+    income: <input type="number" name="income" required>
+    <button type="submit">Enter</button>
+    {% else %}
+        -<button type="submit" name="action" value="income" style="font-size: 1.5vw;">Add Income?</button>
+    {% endif %}
+    {% endif %}
+        <br>
+    {% if not income %}
+    {% if expense %}
+    expense: <input type="number" name="expense" required>
+    <button type="submit">Enter</button>
+    {% else %}
+        -<button type="submit" name="action" value="expense" style="font-size: 1.5vw;">Add Expense</button>
+    {% endif %}
+    {% endif %}
+</p>
+<br>
+<button type="submit" name="action" value="back" formnovalidate style="font-size: 1.5vw;">Back</button>
+    </form>
+</body>
