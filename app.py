@@ -1,7 +1,19 @@
 from flask import Flask,render_template,request,session
 from db import Database
-app=Flask(__name__)
-app.secret_key = "some-long-random-string"
+import os
+import sys
+import webbrowser
+import threading
+import time
+
+if getattr(sys, 'frozen', False):
+    base_path = sys._MEIPASS
+else:
+    base_path = os.path.dirname(os.path.abspath(__file__))
+
+template_folder = os.path.join(base_path, 'templates')
+app = Flask(__name__, template_folder=template_folder)
+app.secret_key = "secret"
 @app.route("/")
 def base():
     return render_template("base.html")
@@ -46,4 +58,11 @@ def home():
     if expense_amount is not None:
         Database().reduce_bal(username,expense_amount)
     return render_template("home.html",balance=Database().get_data(username,"balance"),username=username)
-app.run(debug=True)
+
+def open_browser():
+    time.sleep(1.5)
+    webbrowser.open("http://127.0.0.1:5000")
+
+if __name__ == "__main__":
+    threading.Thread(target=open_browser, daemon=True).start()
+    app.run()
